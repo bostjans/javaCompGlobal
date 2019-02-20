@@ -1,0 +1,2 @@
+# javaCompGlobal
+Java - Component: Global
