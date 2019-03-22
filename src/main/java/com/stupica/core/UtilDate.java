@@ -18,16 +18,33 @@ import java.util.TimeZone;
  */
 public class UtilDate {
 
+    /**
+     * Default NTP date string format. E.g. Fri, Sep 12 2003 21:06:23.860.
+     * See <code>java.text.SimpleDateFormat</code> for code descriptions.
+     */
+    public static final String NTP_DATE_FORMAT = "EEE MMM dd HH:mm:ss yyyy";
+
+    public static final String DATETIME_FORMAT_UNIVERSAL = "yyyy-MM-dd_HH:mm:ss";
+    public static final String DATE_FORMAT_UNIVERSAL = "yyyy-MM-dd";
+
+
+    public static String toUniversalString(Date a_ntpDate) {
+        DateFormat formatter = null;
+
+        if (formatter == null) {
+            // No cache yet, or cached formatter GC'd
+            formatter = new SimpleDateFormat(DATETIME_FORMAT_UNIVERSAL);
+        }
+        synchronized (formatter) {
+            return formatter.format(a_ntpDate);
+        }
+    }
+
+
     public static String toUTCString(Date a_ntpDate) {
         SoftReference utcFormatter = null;
-
-        /**
-         * Default NTP date string format. E.g. Fri, Sep 12 2003 21:06:23.860.
-         * See <code>java.text.SimpleDateFormat</code> for code descriptions.
-         */
-        String NTP_DATE_FORMAT = "EEE MMM dd HH:mm:ss yyyy";
-
         DateFormat formatter = null;
+
         if (utcFormatter != null)
             formatter = (DateFormat) utcFormatter.get();
         if (formatter == null) {
