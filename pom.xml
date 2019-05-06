@@ -53,7 +53,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ftp</artifactId>
-                <version>2.12</version>
+                <version>3.3.2</version>
             </extension>
         </extensions>
     </build>
