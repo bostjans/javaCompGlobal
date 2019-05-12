@@ -69,6 +69,13 @@
             <id>bDevRelease2</id>
             <url>ftp://developer.dev404.net/maven2</url>
         </repository>
+        <!--
+        <repository>
+            <id>githubBostjanS</id>
+            <name>GitHub BostjanS Maven Packages</name>
+            <url>https://maven.pkg.github.com/bostjans</url>
+        </repository>
+        -->
     </distributionManagement>
 
     <developers>
