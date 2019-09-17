@@ -43,6 +43,9 @@ public class ConstWeb {
     static final public int	HTTP_RESP_MIN = HTTP_RESP_CONTINUE;
     static final public int	HTTP_RESP_MAX = HTTP_RESP_NET_CONNECT_TIMEOUT;
 
+    public static final String HTTP_HEADER_NAME_REFERER = "Referer";
+    public static final String HTTP_HEADER_NAME_ORIGIN = "Origin";
+
     // Default Application HTTP Header Key for: username, OE
     public static final String HTTP_HEADER_NAME_OECOMP = "sIdComp";
     public static final String HTTP_HEADER_NAME_USERNAME = "sUsername";
