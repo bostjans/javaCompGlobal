@@ -38,6 +38,10 @@ public class ConstGlobal {
     static final public int	RETURN_ENDOFDATA = 3;
     static final public int	RETURN_DUPLICATEDATA = 4;
     static final public int	RETURN_MOREDATA = 5;
+    static final public int	RETURN_UNKNOWN = 66;
+    static final public int	RETURN_UNKNOWNSTATUS = 66;
+    static final public int	RETURN_UNKNOWNSTATE = 66;
+    static final public int	RETURN_NA = 77;
     static final public int	RETURN_FUNCNOTSUPPORTED = -88;
     static final public int	RETURN_FUNCNOTENABLED = -89;
     static final public int	RETURN_SEC_ERROR = -77;   // Security violation/error
