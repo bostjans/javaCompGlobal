@@ -49,6 +49,11 @@ public class ConstGlobal {
     // Define: empty string
     public static final String DEFINE_STR_NOVALUE = "/";
 
+    /** Text .. */
+    static final public String DEFINE_STR_OK = "OK";
+    static final public String DEFINE_STR_WARN = "Warning";
+    static final public String DEFINE_STR_ERROR = "ERROR";
+
     /**
      * These values may be used as encodings.
      */
