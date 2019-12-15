@@ -8,6 +8,7 @@ package com.stupica.core;
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -26,6 +27,8 @@ public class UtilDate {
 
     public static final String DATETIME_FORMAT_UNIVERSAL = "yyyy-MM-dd_HH:mm:ss";
     public static final String DATE_FORMAT_UNIVERSAL = "yyyy-MM-dd";
+
+    private static Calendar     calendar = Calendar.getInstance();
 
 
     public static String toUniversalString(Date a_ntpDate) {
@@ -56,5 +59,42 @@ public class UtilDate {
         synchronized (formatter) {
             return formatter.format(a_ntpDate);
         }
+    }
+
+
+    /**
+     * Method: truncateToDate
+     *
+     * Method ..
+     *
+     * @return Date not_null = AllOK;
+     */
+    private static Date truncateToDate(Date adtDT) {
+        calendar.setTime(adtDT);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+
+    /**
+     * Method: isEqualInDate
+     *
+     * Method ..
+     *
+     * @return boolean true/false;
+     */
+    private static boolean isEqualInDate(Date adtA, Date adtB) {
+        Date dtA, dtB;
+
+        if ((adtA == null) && (adtB == null)) return true;
+        if ((adtA == null) && (adtB != null)) return false;
+        if ((adtA != null) && (adtB == null)) return false;
+        dtA = truncateToDate(adtA);
+        dtB = truncateToDate(adtB);
+        if (dtA.getTime() == dtB.getTime()) return true;
+        return false;
     }
 }

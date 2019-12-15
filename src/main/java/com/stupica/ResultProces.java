@@ -3,12 +3,18 @@ package com.stupica;
 
 public class ResultProces {
 
-    public int      iResult = ConstGlobal.RETURN_OK;
+    public final String     sStatusOk = "OK";
+    public final String     sStatusErr = "ERROR";
+    public final String     sStatusWarn = "WARNING";
+    public final String     sStatusNA = "NotAvailable";
 
-    public boolean  bIsDone = false;
+    public int      iResult;
 
-    public String        sText = null;
-    public StringBuilder sMsg = null;
+    public boolean  bIsDone;
+
+    public String        sText;
+    public String        sStatus;
+    public StringBuilder sMsg;
 
 
     public ResultProces() {
@@ -17,6 +23,10 @@ public class ResultProces {
 
 
     public void init() {
+        iResult = ConstGlobal.RETURN_OK;
+        sText = null;
+        sStatus = sStatusNA;
+        bIsDone = false;
         sMsg = new StringBuilder();
     }
 }
