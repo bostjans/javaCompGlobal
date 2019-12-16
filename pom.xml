@@ -6,7 +6,7 @@
 
     <groupId>com.stupica.base</groupId>
     <artifactId>globalVar</artifactId>
-    <version>1.4.4</version>
+    <version>1.4.5</version>
     <packaging>jar</packaging>
     <name>globalVariable</name>
     <description>Core library with basic Constant, variables and functions.</description>

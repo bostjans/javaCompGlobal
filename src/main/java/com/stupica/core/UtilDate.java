@@ -69,7 +69,7 @@ public class UtilDate {
      *
      * @return Date not_null = AllOK;
      */
-    private static Date truncateToDate(Date adtDT) {
+    public static Date truncateToDate(Date adtDT) {
         calendar.setTime(adtDT);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -86,7 +86,7 @@ public class UtilDate {
      *
      * @return boolean true/false;
      */
-    private static boolean isEqualInDate(Date adtA, Date adtB) {
+    public static boolean isEqualInDate(Date adtA, Date adtB) {
         Date dtA, dtB;
 
         if ((adtA == null) && (adtB == null)) return true;
