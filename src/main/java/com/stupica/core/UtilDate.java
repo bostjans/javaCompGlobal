@@ -26,17 +26,26 @@ public class UtilDate {
     public static final String NTP_DATE_FORMAT = "EEE MMM dd HH:mm:ss yyyy";
 
     public static final String DATETIME_FORMAT_UNIVERSAL = "yyyy-MM-dd_HH:mm:ss";
+    public static final String DATETIME_FORMAT_UNIVERSAL2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATETIME_FORMAT_SI = "dd.MM.yyyy HH:mm:ss";
     public static final String DATE_FORMAT_UNIVERSAL = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_SI = "dd.MM.yyyy";
 
     private static Calendar     calendar = Calendar.getInstance();
+
+    //private static SoftReference objSrCalendar = null;
+    private static SoftReference objSrUniversalFormatter = null;
+    private static SoftReference objSrUtcFormatter = null;
 
 
     public static String toUniversalString(Date a_ntpDate) {
         DateFormat formatter = null;
 
+        if (objSrUniversalFormatter != null)
+            formatter = (DateFormat) objSrUniversalFormatter.get();
         if (formatter == null) {
-            // No cache yet, or cached formatter GC'd
             formatter = new SimpleDateFormat(DATETIME_FORMAT_UNIVERSAL);
+            objSrUniversalFormatter = new SoftReference(formatter);
         }
         synchronized (formatter) {
             return formatter.format(a_ntpDate);
@@ -45,16 +54,16 @@ public class UtilDate {
 
 
     public static String toUTCString(Date a_ntpDate) {
-        SoftReference utcFormatter = null;
+        //SoftReference utcFormatter = null;
         DateFormat formatter = null;
 
-        if (utcFormatter != null)
-            formatter = (DateFormat) utcFormatter.get();
+        if (objSrUtcFormatter != null)
+            formatter = (DateFormat) objSrUtcFormatter.get();
         if (formatter == null) {
             // No cache yet, or cached formatter GC'd
             formatter = new SimpleDateFormat(NTP_DATE_FORMAT); // + " 'UTC'");
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-            //utcFormatter = new SoftReference(formatter);
+            objSrUtcFormatter = new SoftReference(formatter);
         }
         synchronized (formatter) {
             return formatter.format(a_ntpDate);
