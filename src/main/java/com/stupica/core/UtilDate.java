@@ -30,15 +30,21 @@ public class UtilDate {
     public static final String DATETIME_FORMAT_SI = "dd.MM.yyyy HH:mm:ss";
     public static final String DATE_FORMAT_UNIVERSAL = "yyyy-MM-dd";
     public static final String DATE_FORMAT_SI = "dd.MM.yyyy";
+    public static final String TIME_FORMAT_UNIVERSAL = "hh:mm:ss";
 
     private static Calendar     calendar = Calendar.getInstance();
 
+    //protected SimpleDateFormat objDateFormatUni2 = new SimpleDateFormat(DATETIME_FORMAT_UNIVERSAL2);
+    protected SimpleDateFormat objDateFormatTime = new SimpleDateFormat(TIME_FORMAT_UNIVERSAL);
+
     //private static SoftReference objSrCalendar = null;
     private static SoftReference objSrUniversalFormatter = null;
+    private static SoftReference objSrUniversal2Formatter = null;
     private static SoftReference objSrUtcFormatter = null;
+    private static SoftReference objSrUniversalTimeFormatter = null;
 
 
-    public static String toUniversalString(Date a_ntpDate) {
+    public static String toUniversalString(Date aDate) {
         DateFormat formatter = null;
 
         if (objSrUniversalFormatter != null)
@@ -48,10 +54,9 @@ public class UtilDate {
             objSrUniversalFormatter = new SoftReference(formatter);
         }
         synchronized (formatter) {
-            return formatter.format(a_ntpDate);
+            return formatter.format(aDate);
         }
     }
-
 
     public static String toUTCString(Date a_ntpDate) {
         //SoftReference utcFormatter = null;
@@ -68,6 +73,42 @@ public class UtilDate {
         synchronized (formatter) {
             return formatter.format(a_ntpDate);
         }
+    }
+
+    public static String toUniversalTimeString(Date aDate) {
+        DateFormat formatter = null;
+
+        if (objSrUniversalTimeFormatter != null)
+            formatter = (DateFormat) objSrUniversalTimeFormatter.get();
+        if (formatter == null) {
+            formatter = new SimpleDateFormat(TIME_FORMAT_UNIVERSAL);
+            objSrUniversalTimeFormatter = new SoftReference(formatter);
+        }
+        synchronized (formatter) {
+            return formatter.format(aDate);
+        }
+    }
+
+
+    public static Date fromUniversal2StringDef(String asVal) {
+        Date dtResult = null;
+        DateFormat formatter = null;
+
+        if (objSrUniversal2Formatter != null)
+            formatter = (DateFormat) objSrUniversal2Formatter.get();
+        if (formatter == null) {
+            formatter = new SimpleDateFormat(DATETIME_FORMAT_UNIVERSAL2);
+            objSrUniversal2Formatter = new SoftReference(formatter);
+        }
+        synchronized (formatter) {
+            try {
+                dtResult = formatter.parse(asVal);
+            } catch (Exception e) {
+                // Ignore ..
+                dtResult = new Date();
+            }
+        }
+        return dtResult;
     }
 
 
