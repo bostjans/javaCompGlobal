@@ -94,6 +94,10 @@ public class UtilDate {
         Date dtResult = null;
         DateFormat formatter = null;
 
+        if (UtilString.isEmpty(asVal)) {
+            dtResult = new Date();
+            return dtResult;
+        }
         if (objSrUniversal2Formatter != null)
             formatter = (DateFormat) objSrUniversal2Formatter.get();
         if (formatter == null) {
