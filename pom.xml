@@ -19,8 +19,6 @@
     <!-- library dependencies -->
 
     <dependencies>
-        <!--
-        -->
         <dependency>
             <!-- coordinates of the required library -->
             <groupId>junit</groupId>
@@ -53,7 +51,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ftp</artifactId>
-                <version>3.3.2</version>
+                <version>[3.3,3.4)</version>
             </extension>
         </extensions>
     </build>
