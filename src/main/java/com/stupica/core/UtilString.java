@@ -78,10 +78,7 @@ public class UtilString {
         String sReturn;
 
         sReturn = getStringBetween(asInput, asBegin, asEnd);
-        if (sReturn == null) {
-            return sReturn;
-        }
-        if (sReturn.isEmpty()) {
+        if (isEmpty(sReturn)) {
             return sReturn;
         }
         sReturn = sReturn.replace("\n", "").replace("\r", "");
