@@ -14,11 +14,11 @@ import java.nio.file.Paths;
 public class UtilFile {
 
     /**
-     * Get subString ..
+     * Method writeString() ..
      *
      * @param asFile ..
      * @param asVal ..
-     * @return String
+     * @return int
      */
     public static int writeString(String asFile, String asVal) {
         int         iResult;
