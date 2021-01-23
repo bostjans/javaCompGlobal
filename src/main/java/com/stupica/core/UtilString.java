@@ -4,6 +4,10 @@
 package com.stupica.core;
 
 
+import static com.stupica.ConstGlobal.STR_NEWLINE;
+import static com.stupica.ConstGlobal.STR_RETURN;
+
+
 /**
  * Created by stupicab on 8/31/17.
  */
@@ -61,7 +65,6 @@ public class UtilString {
             sReturn = "";
             return sReturn;
         }
-
         sReturn = asInput.substring(iStartData, iEndData);
         return sReturn;
     }
@@ -81,7 +84,7 @@ public class UtilString {
         if (isEmpty(sReturn)) {
             return sReturn;
         }
-        sReturn = sReturn.replace("\n", "").replace("\r", "");
+        sReturn = sReturn.replace(STR_NEWLINE, "").replace(STR_RETURN, "");
         //sReturn = sReturn.trim();
         return sReturn;
     }

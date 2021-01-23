@@ -52,6 +52,9 @@ public class ConstGlobal {
 
     // Define: empty string
     public static final String DEFINE_STR_NOVALUE = "/";
+    public static final String DEFINE_STR_NEWLINE = System.getProperty("line.separator");
+    public static final String STR_NEWLINE = "\n";
+    public static final String STR_RETURN = "\r";
 
     /** Text .. */
     static final public String DEFINE_STR_OK = "OK";
