@@ -43,6 +43,14 @@ public class ConstWeb {
     static final public int	HTTP_RESP_MIN = HTTP_RESP_CONTINUE;
     static final public int	HTTP_RESP_MAX = HTTP_RESP_NET_CONNECT_TIMEOUT;
 
+    public static final String HTTP_METHOD_NAME_GET = "GET";
+    public static final String HTTP_METHOD_NAME_POST = "POST";
+    public static final String HTTP_METHOD_NAME_PUT = "PUT";
+    public static final String HTTP_METHOD_NAME_DELETE = "DELETE";
+    public static final String HTTP_METHOD_NAME_PATCH = "PATCH";
+    public static final String HTTP_METHOD_NAME_OPTIONS = "OPTIONS";
+    public static final String HTTP_METHOD_NAME_TRACE = "TRACE";
+
     public static final String HTTP_HEADER_NAME_REFERER = "Referer";
     public static final String HTTP_HEADER_NAME_ORIGIN = "Origin";
 
