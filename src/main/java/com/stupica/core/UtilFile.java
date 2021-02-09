@@ -5,10 +5,12 @@ package com.stupica.core;
 
 
 import com.stupica.ConstGlobal;
+import com.stupica.GlobalVar;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 
 public class UtilFile {
@@ -36,7 +38,37 @@ public class UtilFile {
             //		StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             iResult = ConstGlobal.RETURN_ERROR;
-            e.printStackTrace();
+            if (GlobalVar.bIsModeVerbose)
+                e.printStackTrace();
+        }
+        return iResult;
+    }
+
+    /**
+     * Method writeStringAppend() ..
+     *
+     * @param asFile ..
+     * @param asVal ..
+     * @return int
+     */
+    public static int writeStringAppend(String asFile, String asVal) {
+        int         iResult;
+
+        iResult = ConstGlobal.RETURN_OK;
+
+        try {
+            // Java 7
+            Files.write(Paths.get(asFile), asVal.getBytes(), StandardOpenOption.APPEND);
+            // encoding
+            // Files.write(Paths.get(path), content.getBytes(StandardCharsets.UTF_8));
+
+            // extra options
+            // Files.write(Paths.get(path), content.getBytes(),
+            //		StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            iResult = ConstGlobal.RETURN_ERROR;
+            if (GlobalVar.bIsModeVerbose)
+                e.printStackTrace();
         }
         return iResult;
     }
