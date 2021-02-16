@@ -32,10 +32,6 @@ public class UtilFile {
             Files.write(Paths.get(asFile), asVal.getBytes());
             // encoding
             // Files.write(Paths.get(path), content.getBytes(StandardCharsets.UTF_8));
-
-            // extra options
-            // Files.write(Paths.get(path), content.getBytes(),
-            //		StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             iResult = ConstGlobal.RETURN_ERROR;
             if (GlobalVar.bIsModeVerbose)
@@ -58,10 +54,11 @@ public class UtilFile {
 
         try {
             // Java 7
-            Files.write(Paths.get(asFile), asVal.getBytes(), StandardOpenOption.APPEND);
-            // encoding
-            // Files.write(Paths.get(path), content.getBytes(StandardCharsets.UTF_8));
-
+            if (Files.exists(Paths.get(asFile))) {
+                Files.write(Paths.get(asFile), asVal.getBytes(), StandardOpenOption.APPEND);
+            } else {
+                Files.write(Paths.get(asFile), asVal.getBytes());
+            }
             // extra options
             // Files.write(Paths.get(path), content.getBytes(),
             //		StandardOpenOption.CREATE, StandardOpenOption.APPEND);
