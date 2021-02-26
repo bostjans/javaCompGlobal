@@ -21,7 +21,7 @@ public class GlobalVar {
     public String sVersionMin;
     public String sVersionPatch;
     public String sVersionBuild;
-    public String sAuthor;
+    public String sAuthor = "Dev404 - BostjanStupica";
 
     //
     public String sProgDir;
