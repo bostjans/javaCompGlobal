@@ -3,7 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- project coordinates .. -->
-
     <groupId>com.stupica.base</groupId>
     <artifactId>globalVar</artifactId>
     <version>1.4.5</version>
@@ -22,6 +21,10 @@
         <!-- Need Java 1.8, because of library: .. -->
         <maven.compiler.source>${java-version}</maven.compiler.source>
         <maven.compiler.target>${java-version}</maven.compiler.target>
+
+        <sonar.projectKey>bostjans_javaCompGlobal</sonar.projectKey>
+        <sonar.organization>bostjans</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <!-- library dependencies -->
