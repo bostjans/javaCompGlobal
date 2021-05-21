@@ -60,6 +60,8 @@ public class ConstGlobal {
     static final public String DEFINE_STR_OK = "OK";
     static final public String DEFINE_STR_WARN = "Warning";
     static final public String DEFINE_STR_ERROR = "ERROR";
+    static final public String DEFINE_STR_TRUE = "true";
+    static final public String DEFINE_STR_FALSE = "false";
 
     /**
      * These values may be used as encodings.
