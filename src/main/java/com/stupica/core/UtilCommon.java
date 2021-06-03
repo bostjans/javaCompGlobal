@@ -90,67 +90,66 @@ public class UtilCommon {
 
         if (asJson)
             sResult.append("{ ");
-        for (Object key: aobjProp.keySet()) {
-            if (!bIsFirstTime)
-                if (abShouldNewLine) {
-                    if (asJson)
-                        sResult.append(",");
-                    sResult.append(STR_NEWLINE);
-                    if (asJson)
-                        sResult.append("  ");
-                }
-                else
-                    if (asJson)
-                        sResult.append(", ");
+        if (aobjProp != null) {
+            if (aobjProp.keySet() != null) {
+                for (Object key: aobjProp.keySet()) {
+                    if (!bIsFirstTime)
+                        if (abShouldNewLine) {
+                            if (asJson)
+                                sResult.append(",");
+                            sResult.append(STR_NEWLINE);
+                            if (asJson)
+                                sResult.append("  ");
+                        }
+                        else
+                        if (asJson)
+                            sResult.append(", ");
+                        else
+                            sResult.append("; ");
                     else
-                        sResult.append("; ");
-            else
-                bIsFirstTime = false;
+                        bIsFirstTime = false;
 
-//            sResult.append(key.toString()).append(" = ");
-//            sTemp = aobjProp.getProperty(key.toString());
-//            if (sTemp != null)
-//                sResult.append(sTemp);
-
-            sKey = key.toString();
-            sTemp = "";
-            bIsString = false;
-            //Object objData = aobjProp.getProperty(sKey);
-            Object objData = aobjProp.get(sKey);
-            if (objData != null) {
-                if (objData instanceof Boolean) {
-                    sTemp = ((Boolean) objData).toString();
-                } else if (objData instanceof Short) {
-                    sTemp = ((Short) objData).toString();
-                } else if (objData instanceof Integer) {
-                    sTemp = ((Integer) objData).toString();
-                } else if (objData instanceof Long) {
-                    sTemp = ((Long) objData).toString();
-                } else if (objData instanceof Float) {
-                    sTemp = ((Float) objData).toString();
-                } else if (objData instanceof Double) {
-                    sTemp = ((Double) objData).toString();
-                } else if (objData instanceof BigDecimal) {
-                    //double nTemp = ((BigDecimal) objData).doubleValue();
-                    BigDecimal nTemp = (BigDecimal)objData;
-                    sTemp = nTemp.toPlainString();
-                } else if (objData instanceof String) {
-                    sTemp = (String) objData;
-                    bIsString = true;
-                } else {
-                    sTemp = "n/a (unknown type!)";
+                    sKey = key.toString();
+                    sTemp = "";
+                    bIsString = false;
+                    //Object objData = aobjProp.getProperty(sKey);
+                    Object objData = aobjProp.get(sKey);
+                    if (objData != null) {
+                        if (objData instanceof Boolean) {
+                            sTemp = ((Boolean) objData).toString();
+                        } else if (objData instanceof Short) {
+                            sTemp = ((Short) objData).toString();
+                        } else if (objData instanceof Integer) {
+                            sTemp = ((Integer) objData).toString();
+                        } else if (objData instanceof Long) {
+                            sTemp = ((Long) objData).toString();
+                        } else if (objData instanceof Float) {
+                            sTemp = ((Float) objData).toString();
+                        } else if (objData instanceof Double) {
+                            sTemp = ((Double) objData).toString();
+                        } else if (objData instanceof BigDecimal) {
+                            //double nTemp = ((BigDecimal) objData).doubleValue();
+                            BigDecimal nTemp = (BigDecimal)objData;
+                            sTemp = nTemp.toPlainString();
+                        } else if (objData instanceof String) {
+                            sTemp = (String) objData;
+                            bIsString = true;
+                        } else {
+                            sTemp = "n/a (unknown type!)";
+                        }
+                    }
+                    if (asJson) {
+                        sResult.append("\"").append(sKey).append("\"").append(asDelimit);
+                        if (bIsString)
+                            sResult.append("\"");
+                        sResult.append(sTemp.trim());
+                        if (bIsString)
+                            sResult.append("\"");
+                    }
+                    else
+                        sResult.append(sKey).append(asDelimit).append(sTemp.trim());
                 }
             }
-            if (asJson) {
-                sResult.append("\"").append(sKey).append("\"").append(asDelimit);
-                if (bIsString)
-                    sResult.append("\"");
-                sResult.append(sTemp.trim());
-                if (bIsString)
-                    sResult.append("\"");
-            }
-            else
-                sResult.append(sKey).append(asDelimit).append(sTemp.trim());
         }
         if (asJson)
             sResult.append(" }");
