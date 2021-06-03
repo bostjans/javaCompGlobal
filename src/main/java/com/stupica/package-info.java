@@ -3,7 +3,7 @@
  * <p>
  * These classes contain the (global) Constants.
  *
- * Copyright (c) 2019
+ * Copyright (c) 2021
  * (http://www.stupica.com)
  *
  * Product group: commonLibs
