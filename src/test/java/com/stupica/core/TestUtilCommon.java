@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Properties;
 
 import static org.junit.Assert.*;
@@ -72,18 +73,23 @@ public class TestUtilCommon {
         System.out.println("Test: testProp2Str13() - " + this.getClass().getName());
 
         objProp.put("k3", BigDecimal.ONE);
+        objProp.put("k4", Float.MAX_EXPONENT);
+        objProp.put("k11", new Date());
 
         sReturn = UtilCommon.propToStringAll(objProp, true);
         assertNotNull(sReturn);
         System.out.println("Prop.: " + sReturn);
 
-        sReturn = UtilCommon.propToStringAll(objProp, false, true, ": ");
+        sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
         System.out.println("Prop.: " + sReturn);
 
-        sReturn = UtilCommon.propToStringAll(objProp, true, false, " = ");
+        sReturn = UtilCommon.propToStringAll(objProp, true, false, false, " = ");
         System.out.println("Prop.: " + sReturn);
 
-        sReturn = UtilCommon.propToStringAll(objProp, false, false, " = ");
+        sReturn = UtilCommon.propToStringAll(objProp, false, false, false, " = ");
+        System.out.println("Prop.: " + sReturn);
+
+        sReturn = UtilCommon.propToStringAll(objProp, true, true, true, " = ");
         System.out.println("Prop.: " + sReturn);
     }
 }
