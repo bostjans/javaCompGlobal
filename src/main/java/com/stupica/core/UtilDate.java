@@ -78,6 +78,8 @@ public class UtilDate {
     public static String toUniversalTimeString(Date aDate) {
         DateFormat formatter = null;
 
+        if (aDate == null)
+            return "__:__:__";
         if (objSrUniversalTimeFormatter != null)
             formatter = (DateFormat) objSrUniversalTimeFormatter.get();
         if (formatter == null) {
