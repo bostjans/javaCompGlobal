@@ -42,6 +42,7 @@ public class ConstGlobal {
     static final public int	RETURN_NOCONNECTION = -6;
     static final public int	RETURN_NOSERVICE = -7;
     static final public int	RETURN_SERVICEUNAVAILABLE = RETURN_NOSERVICE;
+    static final public int	RETURN_SKIP = 11;
     static final public int	RETURN_UNKNOWN = 66;
     static final public int	RETURN_UNKNOWNSTATUS = 66;
     static final public int	RETURN_UNKNOWNSTATE = 66;
