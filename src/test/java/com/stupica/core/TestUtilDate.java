@@ -22,7 +22,6 @@ public class TestUtilDate {
     @Test
     public void testTrunc03() {
         // Local variables
-        String      sReturn = null;
         Date        dtNow = new Date();
         long        nNow = System.currentTimeMillis();
 
@@ -39,7 +38,6 @@ public class TestUtilDate {
     public void testTrunc11() {
         // Local variables
         String          sReturn = null;
-        String          sUrl = "http://www.stupica.com";
 
         // Initialization
         System.out.println("--");
