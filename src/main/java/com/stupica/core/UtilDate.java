@@ -27,6 +27,7 @@ public class UtilDate {
 
     public static final String DATETIME_FORMAT_UNIVERSAL = "yyyy-MM-dd_HH:mm:ss";
     public static final String DATETIME_FORMAT_UNIVERSAL2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATETIME_FORMAT_UNI_TIMECOMP = "yyyy-MM-dd_HHmmss";
     public static final String DATETIME_FORMAT_SI = "dd.MM.yyyy HH:mm:ss";
     public static final String DATE_FORMAT_UNIVERSAL = "yyyy-MM-dd";
     public static final String DATE_FORMAT_SI = "dd.MM.yyyy";
@@ -40,6 +41,7 @@ public class UtilDate {
     //private static SoftReference objSrCalendar = null;
     private static SoftReference objSrUniversalFormatter = null;
     private static SoftReference objSrUniversal2Formatter = null;
+    private static SoftReference objSrUniversalTimeComp = null;
     private static SoftReference objSrUtcFormatter = null;
     private static SoftReference objSrUniversalTimeFormatter = null;
 
@@ -58,8 +60,21 @@ public class UtilDate {
         }
     }
 
+    public static String toUniversalTimeCompString(Date aDate) {
+        DateFormat formatter = null;
+
+        if (objSrUniversalTimeComp != null)
+            formatter = (DateFormat) objSrUniversalTimeComp.get();
+        if (formatter == null) {
+            formatter = new SimpleDateFormat(DATETIME_FORMAT_UNI_TIMECOMP);
+            objSrUniversalTimeComp = new SoftReference(formatter);
+        }
+        synchronized (formatter) {
+            return formatter.format(aDate);
+        }
+    }
+
     public static String toUTCString(Date a_ntpDate) {
-        //SoftReference utcFormatter = null;
         DateFormat formatter = null;
 
         if (objSrUtcFormatter != null)
