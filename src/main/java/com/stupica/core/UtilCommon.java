@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.Properties;
 
 import static com.stupica.ConstGlobal.STR_NEWLINE;

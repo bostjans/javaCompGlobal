@@ -1,10 +1,14 @@
 package com.stupica;
 
 
+import static com.stupica.ConstGlobal.DEFINE_STR_ERROR;
+import static com.stupica.ConstGlobal.DEFINE_STR_OK;
+
+
 public class ResultProces {
 
-    public final String     sStatusOk = "OK";
-    public final String     sStatusErr = "ERROR";
+    public final String     sStatusOk = DEFINE_STR_OK;
+    public final String     sStatusErr = DEFINE_STR_ERROR;
     public final String     sStatusWarn = "WARNING";
     public final String     sStatusNA = "NotAvailable";
 

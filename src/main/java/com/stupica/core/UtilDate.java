@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2017 SETCCE
- * (http://www.setcce.si)
+ * Copyright (c) 2017 Dev404
+ * (http://www.dev404.net)
  */
 package com.stupica.core;
 
