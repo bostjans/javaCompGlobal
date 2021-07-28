@@ -17,6 +17,8 @@ public class ConstGlobal {
     static final public int	PROCESS_EXIT_FAILURE = 1;
     /** FAIL_PARAM = 2 */
     static final public int	PROCESS_EXIT_FAIL_PARAM = 2;
+    /** SIGINT = 130 */
+    static final public int	PROCESS_EXIT_SIGINT = 130;
 
     /**
      * These values may be used as exit status codes.
