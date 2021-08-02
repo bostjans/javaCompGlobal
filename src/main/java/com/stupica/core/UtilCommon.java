@@ -84,135 +84,135 @@ public class UtilCommon {
     public static String propToStringAll(Properties aobjProp, boolean abShouldNewLine, boolean asJson, boolean abFormat, String asDelimit) {
         boolean         bIsFirstTime = true;
         boolean         bIsString;
+        boolean         bIsEmpty = false;
         String          sKey;
         String          sTemp;
         BigDecimal      nTemp;
         StringBuilder   sResult = new StringBuilder();
 
-        if (asJson)
-            sResult.append("{ ");
-        if (aobjProp != null) {
-            if (aobjProp.keySet() != null) {
-                for (Object key: aobjProp.keySet()) {
-                    if (!bIsFirstTime)
-                        if (abShouldNewLine) {
-                            if (asJson)
-                                sResult.append(",");
-                            sResult.append(STR_NEWLINE);
-                            if (asJson)
-                                sResult.append("  ");
-                        }
-                        else
-                        if (asJson)
-                            sResult.append(", ");
-                        else
-                            sResult.append("; ");
-                    else
-                        bIsFirstTime = false;
+        if (aobjProp == null)
+            bIsEmpty = true;
+        else
+            if (aobjProp.keySet() == null)
+                bIsEmpty = true;
+            else if (aobjProp.keySet().isEmpty())
+                bIsEmpty = true;
 
-                    sKey = key.toString();
-                    sTemp = "";
-                    bIsString = false;
+        if (!bIsEmpty) {
+            if (asJson)
+                sResult.append("{ ");
+            if (aobjProp != null) {
+                if (aobjProp.keySet() != null) {
+                    for (Object key: aobjProp.keySet()) {
+                        if (!bIsFirstTime)
+                            if (abShouldNewLine) {
+                                if (asJson)
+                                    sResult.append(",");
+                                sResult.append(STR_NEWLINE);
+                                if (asJson)
+                                    sResult.append("  ");
+                            } else
+                                if (asJson)
+                                    sResult.append(", ");
+                                else
+                                    sResult.append("; ");
+                        else
+                            bIsFirstTime = false;
 
-                    Object objData = aobjProp.get(sKey);
-                    if (objData != null) {
-                        if (objData instanceof Boolean) {
-                            sTemp = ((Boolean) objData).toString();
-                        } else if (objData instanceof Short) {
-                            sTemp = ((Short) objData).toString();
-                        } else if (objData instanceof Integer) {
-                            sTemp = ((Integer) objData).toString();
-                        } else if (objData instanceof Long) {
-                            sTemp = ((Long) objData).toString();
-                        } else if (objData instanceof Float) {
-                            if (abFormat) {
-                                if (objData == null) {
-                                    nTemp = BigDecimal.ZERO;
-                                } else {
-                                    Float nTempF = (Float) objData;
-                                    nTemp = BigDecimal.ZERO;
-                                    if (nTempF.isInfinite()) {
-                                        //objEvalJsonProp.add(sKey + "-Float", "is_infinite");
-                                        propToStringAddElement(sKey + "-Float", "is_infinite", asDelimit, true, asJson, sResult);
-                                    } else if (nTempF.isNaN()) {
-                                        propToStringAddElement(sKey + "-Float", "is_NaN", asDelimit, true, asJson, sResult);
+                        sKey = key.toString();
+                        sTemp = "";
+                        bIsString = false;
+
+                        Object objData = aobjProp.get(sKey);
+                        if (objData != null) {
+                            if (objData instanceof Boolean) {
+                                sTemp = ((Boolean) objData).toString();
+                            } else if (objData instanceof Short) {
+                                sTemp = ((Short) objData).toString();
+                            } else if (objData instanceof Integer) {
+                                sTemp = ((Integer) objData).toString();
+                            } else if (objData instanceof Long) {
+                                sTemp = ((Long) objData).toString();
+                            } else if (objData instanceof Float) {
+                                if (abFormat) {
+                                    if (objData == null) {
+                                        nTemp = BigDecimal.ZERO;
+                                    } else {
+                                        Float nTempF = (Float) objData;
+                                        nTemp = BigDecimal.ZERO;
+                                        if (nTempF.isInfinite()) {
+                                            //objEvalJsonProp.add(sKey + "-Float", "is_infinite");
+                                            propToStringAddElement(sKey + "-Float", "is_infinite", asDelimit, true, asJson, sResult);
+                                        } else if (nTempF.isNaN()) {
+                                            propToStringAddElement(sKey + "-Float", "is_NaN", asDelimit, true, asJson, sResult);
+                                        } else {
+                                            try {
+                                                nTemp = BigDecimal.valueOf(nTempF.doubleValue());
+                                            } catch (Exception ex) {
+                                                nTemp = BigDecimal.ZERO;
+                                                ex.printStackTrace();
+                                            }
+                                        }
+                                        nTemp = nTemp.setScale(8, BigDecimal.ROUND_CEILING);
+                                    }
+                                    //objEvalJsonProp.add(sKey, nTemp.floatValue());
+                                    sTemp = "" + nTemp.floatValue();
+                                    if (sTemp.contains("E")) {
+                                        propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
+                                    }
+                                } else
+                                    sTemp = ((Float) objData).toString();
+                            } else if (objData instanceof Double) {
+                                if (abFormat) {
+                                    if (objData == null) {
+                                        nTemp = BigDecimal.ZERO;
                                     } else {
                                         try {
-                                            nTemp = BigDecimal.valueOf(nTempF.doubleValue());
+                                            nTemp = BigDecimal.valueOf(((Double) objData).doubleValue());
                                         } catch (Exception ex) {
                                             nTemp = BigDecimal.ZERO;
                                             ex.printStackTrace();
                                         }
+                                        nTemp = nTemp.setScale(8, BigDecimal.ROUND_CEILING);
                                     }
-                                    nTemp = nTemp.setScale(8, BigDecimal.ROUND_CEILING);
-                                }
-                                //objEvalJsonProp.add(sKey, nTemp.floatValue());
-                                sTemp = "" + nTemp.floatValue();
-                                if (sTemp.contains("E")) {
-                                    propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
-                                }
-                            } else
-                                sTemp = ((Float) objData).toString();
-                        } else if (objData instanceof Double) {
-                            if (abFormat) {
-                                if (objData == null) {
-                                    nTemp = BigDecimal.ZERO;
+                                    //objEvalJsonProp.add(sKey, nTemp.doubleValue());
+                                    //sTemp = "" + nTemp.floatValue();
+                                    sTemp = "" + nTemp.doubleValue();
+                                    if (sTemp.contains("E")) {
+                                        propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
+                                    }
+                                } else
+                                    sTemp = ((Double) objData).toString();
+                            } else if (objData instanceof BigDecimal) {
+                                if (abFormat) {
+                                    nTemp = (BigDecimal) objData;
+                                    //objEvalJsonProp.add(sKey, nTemp.doubleValue());
+                                    sTemp = "" + nTemp.doubleValue();
+                                    if (sTemp.contains("E")) {
+                                        propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
+                                    }
                                 } else {
-                                    try {
-                                        nTemp = BigDecimal.valueOf(((Double) objData).doubleValue());
-                                    } catch (Exception ex) {
-                                        nTemp = BigDecimal.ZERO;
-                                        ex.printStackTrace();
-                                    }
-                                    nTemp = nTemp.setScale(8, BigDecimal.ROUND_CEILING);
+                                    //double nTemp = ((BigDecimal) objData).doubleValue();
+                                    nTemp = (BigDecimal)objData;
+                                    sTemp = nTemp.toPlainString();
                                 }
-                                //objEvalJsonProp.add(sKey, nTemp.doubleValue());
-                                //sTemp = "" + nTemp.floatValue();
-                                sTemp = "" + nTemp.doubleValue();
-                                if (sTemp.contains("E")) {
-                                    propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
-                                }
-                            } else
-                                sTemp = ((Double) objData).toString();
-                        } else if (objData instanceof BigDecimal) {
-                            if (abFormat) {
-                                nTemp = (BigDecimal) objData;
-                                //objEvalJsonProp.add(sKey, nTemp.doubleValue());
-                                sTemp = "" + nTemp.doubleValue();
-                                if (sTemp.contains("E")) {
-                                    propToStringAddElement(sKey + "-asStr", nTemp.toPlainString(), asDelimit, true, asJson, sResult);
-                                }
+                            } else if (objData instanceof String) {
+                                sTemp = (String) objData;
+                                bIsString = true;
+                            } else if (objData instanceof Date) {
+                                sTemp = UtilDate.toUniversalString((Date) objData);
+                                bIsString = true;
                             } else {
-                                //double nTemp = ((BigDecimal) objData).doubleValue();
-                                nTemp = (BigDecimal)objData;
-                                sTemp = nTemp.toPlainString();
+                                sTemp = "n/a (unknown type!)";
                             }
-                        } else if (objData instanceof String) {
-                            sTemp = (String) objData;
-                            bIsString = true;
-                        } else if (objData instanceof Date) {
-                            sTemp = UtilDate.toUniversalString((Date) objData);
-                            bIsString = true;
-                        } else {
-                            sTemp = "n/a (unknown type!)";
                         }
+                        propToStringAddElement(sKey, sTemp, asDelimit, bIsString, asJson, sResult);
                     }
-//                    if (asJson) {
-//                        sResult.append("\"").append(sKey).append("\"").append(asDelimit);
-//                        if (bIsString)
-//                            sResult.append("\"");
-//                        sResult.append(sTemp.trim());
-//                        if (bIsString)
-//                            sResult.append("\"");
-//                    }
-//                    else
-//                        sResult.append(sKey).append(asDelimit).append(sTemp.trim());
-                    propToStringAddElement(sKey, sTemp, asDelimit, bIsString, asJson, sResult);
                 }
             }
+            if (asJson)
+                sResult.append(" }");
         }
-        if (asJson)
-            sResult.append(" }");
         return sResult.toString();
     }
     private static void propToStringAddElement(String asKey, String asValue, String asDelimit, boolean abIsString, boolean asJson, StringBuilder aobjResult) {
