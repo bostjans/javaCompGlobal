@@ -5,6 +5,8 @@
 package com.stupica.core;
 
 
+import com.stupica.ConstGlobal;
+
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -130,6 +132,24 @@ public class UtilDate {
             }
         }
         return dtResult;
+    }
+
+
+    public static Date fromUnixString2Date(String asVal) {
+        long lDT = 0L;
+        Date dtReturn = null;
+
+        if (!UtilString.isEmptyTrim(asVal))
+            try {
+                lDT = Long.parseLong(asVal);
+            } catch (Exception ex) {
+                //logger.severe("getTickerRecFromJsonBitstamp(): Error at data parsing!"
+                //        + " Can NOT extract timestamp field!"
+                //        + " sData: " + objJson);
+                ex.printStackTrace();
+            }
+        dtReturn = new Date(lDT * 1000);
+        return dtReturn;
     }
 
 

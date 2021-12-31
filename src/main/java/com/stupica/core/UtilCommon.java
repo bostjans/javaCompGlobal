@@ -227,4 +227,56 @@ public class UtilCommon {
         else
             aobjResult.append(asKey).append(asDelimit).append(asValue.trim());
     }
+
+
+    /**
+     * Method: exceptionToString
+     *
+     * ..
+     */
+    public static String exceptionToString(Exception aobjEx) {
+        StringBuilder sResult = new StringBuilder();
+
+        if (!UtilString.isEmpty(aobjEx.getMessage()))
+            sResult.append("; Msg.: ").append(aobjEx.getMessage());
+        sResult.append("; Exception: ").append(aobjEx.toString());
+        {
+            int iCountLevel = 1;
+            Throwable objCause = aobjEx.getCause();
+
+            if (objCause != null) {
+                sResult.append("; cause(").append(iCountLevel++).append("): ").append(objCause.getMessage());
+                objCause = objCause.getCause();
+            }
+            if (objCause != null) {
+                sResult.append("; cause(").append(iCountLevel++).append("): ").append(objCause.getMessage());
+                objCause = objCause.getCause();
+            }
+            if (objCause != null) {
+                sResult.append("; cause(").append(iCountLevel++).append("): ").append(objCause.getMessage());
+                objCause = objCause.getCause();
+            }
+            if (objCause != null) {
+                sResult.append("; cause(").append(iCountLevel++).append("): ").append(objCause.getMessage());
+            }
+        }
+        return sResult.toString();
+    }
+    /**
+     * Method: exceptionStackToString
+     *
+     * ..
+     */
+    public static String exceptionStackToString(Exception aobjEx) {
+        String      sResult;
+        StringWriter writer = new StringWriter();
+
+        sResult = exceptionToString(aobjEx);
+        {
+            PrintWriter pw = new PrintWriter(writer);
+            aobjEx.printStackTrace(pw);
+            sResult += "\n\tExceptionStack: " + writer.toString();
+        }
+        return sResult;
+    }
 }
