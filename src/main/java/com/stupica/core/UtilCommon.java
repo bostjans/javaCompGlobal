@@ -198,6 +198,9 @@ public class UtilCommon {
                                 }
                             } else if (objData instanceof String) {
                                 sTemp = (String) objData;
+                                if (asJson)
+                                    if (sTemp.contains("\""))
+                                        sTemp = sTemp.replace("\"", "\\\"");
                                 bIsString = true;
                             } else if (objData instanceof Date) {
                                 sTemp = UtilDate.toUniversalString((Date) objData);

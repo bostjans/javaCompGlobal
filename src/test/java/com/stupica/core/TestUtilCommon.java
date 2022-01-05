@@ -74,7 +74,7 @@ public class TestUtilCommon {
 
         objProp.put("k3", BigDecimal.ONE);
         objProp.put("k4", Float.MAX_EXPONENT);
-        objProp.put("k11", new Date());
+        objProp.put("k11", new Date(1641383940 * 1000L));
 
         sReturn = UtilCommon.propToStringAll(objProp, true);
         assertNotNull(sReturn);
@@ -88,8 +88,26 @@ public class TestUtilCommon {
 
         sReturn = UtilCommon.propToStringAll(objProp, false, false, false, " = ");
         System.out.println("Prop.: " + sReturn);
+        assertEquals("k11 = 2022-01-05_12:59:00; k4 = 127; k3 = 1; k2 = val2; k1 = val1", sReturn);
 
         sReturn = UtilCommon.propToStringAll(objProp, true, true, true, " = ");
         System.out.println("Prop.: " + sReturn);
+    }
+
+
+    @Test
+    public void testProp2StrJson21() {
+        // Local variables
+        String          sReturn = null;
+
+        // Initialization
+        System.out.println("--");
+        System.out.println("Test: testProp2StrJson21() - " + this.getClass().getName());
+
+        objProp.put("str01", "z \"narekovaji\"");
+
+        sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
+        System.out.println("Prop.: " + sReturn);
+        assertEquals("{ \"str01\": \"z \\\"narekovaji\\\"\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
     }
 }
