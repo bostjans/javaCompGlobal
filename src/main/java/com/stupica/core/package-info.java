@@ -3,6 +3,6 @@
  *
  * @since 1.1
  * @author bostjanStupica
- * @version 1.2
+ * @version 1.4
  */
 package com.stupica.core;

@@ -110,4 +110,36 @@ public class TestUtilCommon {
         System.out.println("Prop.: " + sReturn);
         assertEquals("{ \"str01\": \"z \\\"narekovaji\\\"\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
     }
+
+    @Test
+    public void testProp2StrJson22() {
+        // Local variables
+        String          sReturn = null;
+
+        // Initialization
+        System.out.println("--");
+        System.out.println("Test: testProp2StrJson22() - " + this.getClass().getName());
+
+        objProp.put("str02", "s tabulatorjem:\t.. namesto presledka;");
+
+        sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
+        System.out.println("Prop.: " + sReturn);
+        assertEquals("{ \"str02\": \"s tabulatorjem:\\t.. namesto presledka;\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
+    }
+
+    @Test
+    public void testProp2StrJson23() {
+        // Local variables
+        String          sReturn = null;
+
+        // Initialization
+        System.out.println("--");
+        System.out.println("Test: testProp2StrJson23() - " + this.getClass().getName());
+
+        objProp.put("str03", "z newLine:\n.. namesto presledka;");
+
+        sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
+        System.out.println("Prop.: " + sReturn);
+        assertEquals("{ \"str03\": \"z newLine:\\n.. namesto presledka;\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
+    }
 }
