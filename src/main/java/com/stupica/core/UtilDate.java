@@ -61,6 +61,10 @@ public class UtilDate {
             return formatter.format(aDate);
         }
     }
+    public static String toUniversalStringNow() {
+        Date   dtNow = new Date();
+        return toUniversalString(dtNow);
+    }
 
     public static String toUniversalTimeCompString(Date aDate) {
         DateFormat formatter = null;
@@ -74,6 +78,10 @@ public class UtilDate {
         synchronized (formatter) {
             return formatter.format(aDate);
         }
+    }
+    public static String toUniversalTimeCompStringNow() {
+        Date   dtNow = new Date();
+        return toUniversalTimeCompString(dtNow);
     }
 
     public static String toUTCString(Date a_ntpDate) {
@@ -90,6 +98,10 @@ public class UtilDate {
         synchronized (formatter) {
             return formatter.format(a_ntpDate);
         }
+    }
+    public static String toUTCStringNow() {
+        Date   dtNow = new Date();
+        return toUTCString(dtNow);
     }
 
     public static String toUniversalTimeString(Date aDate) {
