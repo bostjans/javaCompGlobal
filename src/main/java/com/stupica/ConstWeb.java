@@ -1,7 +1,9 @@
 package com.stupica;
 
-
+/* .. deprecated for future releases (above Java_v1.8):
 import sun.net.www.protocol.http.HttpURLConnection;
+*/
+
 
 /**
  * Created by bostjans on 01/07/17.
@@ -16,10 +18,10 @@ public class ConstWeb {
     /**
      * ..
      */
-    static final public int	HTTP_RESP_SUCCESS = HttpURLConnection.HTTP_OK;
+    static final public int	HTTP_RESP_SUCCESS = 200;        // HttpURLConnection.HTTP_OK;
     static final public int	HTTP_RESP_OK = HTTP_RESP_SUCCESS;
-    static final public int	HTTP_RESP_NO_CREATED = HttpURLConnection.HTTP_CREATED;
-    static final public int	HTTP_RESP_NO_CONTENT = HttpURLConnection.HTTP_NO_CONTENT;
+    static final public int	HTTP_RESP_NO_CREATED = 201;     // HttpURLConnection.HTTP_CREATED;
+    static final public int	HTTP_RESP_NO_CONTENT = 204;     // HttpURLConnection.HTTP_NO_CONTENT;
 
     static final public int	HTTP_RESP_BAD_REQUEST = 400;
     static final public int	HTTP_RESP_UNAUTHORIZED = 401;

@@ -5,10 +5,10 @@
     <!-- project coordinates .. -->
     <groupId>com.stupica.base</groupId>
     <artifactId>globalVar</artifactId>
-    <version>1.4.7</version>
+    <version>1.4.8</version>
     <packaging>jar</packaging>
     <name>globalVariable</name>
-    <description>Core library with basic Constant, variables and functions.</description>
+    <description>Core library with basic Constant, variables and (util) functions.</description>
     <organization>
         <name>developer.stupica.com</name>
         <url>http://www.stupica.com</url>
@@ -16,7 +16,7 @@
     <url>http://developer.stupica.com/maven/</url>
 
     <properties>
-        <java-version>1.7</java-version>
+        <java-version>1.8</java-version>
 
         <!-- Need Java 1.8, because of library: .. -->
         <maven.compiler.source>${java-version}</maven.compiler.source>
@@ -44,7 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>META-INF/MANIFEST.MF</manifestFile>

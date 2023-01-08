@@ -26,6 +26,7 @@ public class TestUtilCommon {
     @Before
     public void setUp() {
         System.out.println("Setup: ..");
+        UtilCommon.bShouldSortProp2Str = true;
 
         objProp = new Properties();
         objProp.setProperty("k1", "val1");
@@ -88,7 +89,7 @@ public class TestUtilCommon {
 
         sReturn = UtilCommon.propToStringAll(objProp, false, false, false, " = ");
         System.out.println("Prop.: " + sReturn);
-        assertEquals("k11 = 2022-01-05_12:59:00; k4 = 127; k3 = 1; k2 = val2; k1 = val1", sReturn);
+        assertEquals("k1 = val1; k11 = 2022-01-05_12:59:00; k2 = val2; k3 = 1; k4 = 127", sReturn);
 
         sReturn = UtilCommon.propToStringAll(objProp, true, true, true, " = ");
         System.out.println("Prop.: " + sReturn);
@@ -108,7 +109,7 @@ public class TestUtilCommon {
 
         sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
         System.out.println("Prop.: " + sReturn);
-        assertEquals("{ \"str01\": \"z \\\"narekovaji\\\"\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
+        assertEquals("{ \"k1\": \"val1\", \"k2\": \"val2\", \"str01\": \"z \\\"narekovaji\\\"\" }", sReturn);
     }
 
     @Test
@@ -124,7 +125,7 @@ public class TestUtilCommon {
 
         sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
         System.out.println("Prop.: " + sReturn);
-        assertEquals("{ \"str02\": \"s tabulatorjem:\\t.. namesto presledka;\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
+        assertEquals("{ \"k1\": \"val1\", \"k2\": \"val2\", \"str02\": \"s tabulatorjem:\\t.. namesto presledka;\" }", sReturn);
     }
 
     @Test
@@ -140,6 +141,6 @@ public class TestUtilCommon {
 
         sReturn = UtilCommon.propToStringAll(objProp, false, true, false, ": ");
         System.out.println("Prop.: " + sReturn);
-        assertEquals("{ \"str03\": \"z newLine:\\n.. namesto presledka;\", \"k2\": \"val2\", \"k1\": \"val1\" }", sReturn);
+        assertEquals("{ \"k1\": \"val1\", \"k2\": \"val2\", \"str03\": \"z newLine:\\n.. namesto presledka;\" }", sReturn);
     }
 }

@@ -1,3 +1,3 @@
 # Java Component: Global (s)
 
-.. for program/Component global Variables.
+.. for (Java) program/Component global Variables, Constant & (util) functions.
