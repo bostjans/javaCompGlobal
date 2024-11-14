@@ -70,6 +70,7 @@ public class ConstGlobal {
 
     /**
      * These values may be used as encodings.
+     * java.nio.charset.StandardCharsets.UTF_8 = "UTF-8";
      */
     public final static String ENCODING_UTF8 = "UTF8";
     public final static String ENCODING_UTF_8 = "UTF-8";
