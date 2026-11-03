@@ -11,9 +11,9 @@
     <description>Core library with basic Constant, variables and (util) functions.</description>
     <organization>
         <name>developer.stupica.com</name>
-        <url>http://www.stupica.com</url>
+        <url>https://www.stupica.com</url>
     </organization>
-    <url>http://developer.stupica.com/maven/</url>
+    <url>https://developer.stupica.com/maven/</url>
 
     <properties>
         <java-version>1.8</java-version>
@@ -33,7 +33,7 @@
             <!-- coordinates of the required library -->
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>[4.13,5)</version>
+            <version>[4.13.2,5)</version>
             <!-- this dependency is only used for running and compiling tests -->
             <scope>test</scope>
         </dependency>
@@ -44,7 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.1</version>
                 <configuration>
                     <archive>
                         <manifestFile>META-INF/MANIFEST.MF</manifestFile>
@@ -57,6 +57,8 @@
             </plugin>
         </plugins>
 
+        <!--
+        -->
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
@@ -69,8 +71,8 @@
     <distributionManagement>
         <!--
         <repository>
-            <id>bDevRelease</id>
-            <url>ftp://developer.stupica.com/maven2</url>
+            <id>dev404</id>
+            <url>https://repo.stupica.com/repository/maven-releases/</url>
         </repository>
         -->
         <repository>
@@ -93,7 +95,7 @@
             <email>bostjan@stupica.com</email>
             <url>http://www.stupica.com</url>
             <organization>Developer404</organization>
-            <organizationUrl>http://www.stupica.com</organizationUrl>
+            <organizationUrl>https://www.stupica.com</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -101,7 +103,7 @@
             </roles>
             <timezone>Europe/Berlin</timezone>
             <properties>
-                <picUrl>http://bostjan.dev404.net/about_me/myimg01.jpg</picUrl>
+                <picUrl>https://bostjan.dev404.net/about_me/myimg01.jpg</picUrl>
             </properties>
         </developer>
     </developers>
